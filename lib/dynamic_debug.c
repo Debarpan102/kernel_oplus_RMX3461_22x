@@ -1033,6 +1033,7 @@ static int __init dynamic_debug_init(void)
 		pr_info("Ignore empty _ddebug table in a CONFIG_DYNAMIC_DEBUG_CORE build\n");
 		ddebug_init_success = 1;
 		return 0;
+
 	}
 	iter = __start___verbose;
 	modname = iter->modname;
