@@ -664,6 +664,8 @@ asmlinkage __visible void __init start_kernel(void)
 		phx_set_boot_stage(KERNEL_MM_INIT_DONE);
 #endif //OPLUS_FEATURE_PHOENIX
 
+
+	poking_init();
 	ftrace_init();
 
 	/* trace_printk can be enabled here */
@@ -807,13 +809,13 @@ asmlinkage __visible void __init start_kernel(void)
 	delayacct_init();
 
 
+
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_PHOENIX)
 	if(phx_set_boot_stage)
 		phx_set_boot_stage(KERNEL_DELAYACCT_INIT_DONE);
 #endif
 
-	poking_init();
-
+	
 	acpi_subsystem_init();
 	arch_post_acpi_subsys_init();
 	sfi_init_late();
