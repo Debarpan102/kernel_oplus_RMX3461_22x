@@ -1709,6 +1709,7 @@ static int dwc3_probe(struct platform_device *pdev)
 	init_waitqueue_head(&dwc->wait_linkstate);
 	spin_lock_init(&dwc->lock);
 
+
 	pm_runtime_no_callbacks(dev);
 	pm_runtime_set_active(dev);
 	if (dwc->enable_bus_suspend) {
@@ -1786,7 +1787,7 @@ err2:
 err1:
 	pm_runtime_allow(&pdev->dev);
 	pm_runtime_disable(&pdev->dev);
-
+	
 	clk_bulk_disable_unprepare(dwc->num_clks, dwc->clks);
 assert_reset:
 	reset_control_assert(dwc->reset);
