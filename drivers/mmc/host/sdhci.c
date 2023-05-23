@@ -1137,6 +1137,8 @@ static void sdhci_prepare_data(struct sdhci_host *host, struct mmc_command *cmd)
 		}
 	}
 
+	sdhci_config_dma(host);
+
 	if (host->flags & SDHCI_REQ_USE_DMA) {
 		int sg_cnt = sdhci_pre_dma_transfer(host, data, COOKIE_MAPPED);
 
@@ -1155,8 +1157,6 @@ static void sdhci_prepare_data(struct sdhci_host *host, struct mmc_command *cmd)
 			sdhci_set_sdma_addr(host, sdhci_sdma_address(host));
 		}
 	}
-
-	sdhci_config_dma(host);
 
 	if (!(host->flags & SDHCI_REQ_USE_DMA)) {
 		int flags;
