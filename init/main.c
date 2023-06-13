@@ -814,11 +814,20 @@ asmlinkage __visible void __init start_kernel(void)
 	taskstats_init_early();
 	delayacct_init();
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_OPLUS_FEATURE_PHOENIX)
 	if(phx_set_boot_stage)
 		phx_set_boot_stage(KERNEL_DELAYACCT_INIT_DONE);
 #endif
+=======
+	poking_init();
+
+	arch_cpu_finalize_init();
+	/* Temporary conditional until everything has been converted */
+#ifndef CONFIG_ARCH_HAS_CPU_FINALIZE_INIT
+>>>>>>> afe787cf253b (init: Provide arch_cpu_finalize_init())
 	check_bugs();
+#endif
 
 	acpi_subsystem_init();
 	arch_post_acpi_subsys_init();
