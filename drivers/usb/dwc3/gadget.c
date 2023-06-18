@@ -2586,9 +2586,11 @@ static int dwc3_gadget_pullup(struct usb_gadget *g, int is_on)
 	dwc->b_suspend = false;
 	dwc3_notify_event(dwc, DWC3_CONTROLLER_NOTIFY_OTG_EVENT, 0);
 
+
 	ret = dwc3_gadget_run_stop_util(dwc);
 	spin_unlock_irqrestore(&dwc->lock, flags);
 	if (!is_on && ret == -ETIMEDOUT) {
+
 		/*
 		 * If we fail to stop the controller then mark it as an error
 		 * event since it can lead the controller to go into an unknown
