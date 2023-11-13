@@ -3621,11 +3621,17 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
 			len = 0;
 		}
 
+read_again:
 		if (count >= limit)
 			break;
 
+<<<<<<< HEAD
 read_again:
 		sec_len = 0;
+=======
+		buf1_len = 0;
+		buf2_len = 0;
+>>>>>>> 5cc1f24f7333 (net: stmmac: fix rx budget limit check)
 		entry = next_entry;
 		buf = &rx_q->buf_pool[entry];
 
