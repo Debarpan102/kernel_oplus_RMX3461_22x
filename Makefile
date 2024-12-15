@@ -518,6 +518,10 @@ CFLAGS_KERNEL +=   -DOPLUS_BUG_STABILITY
 CFLAGS_MODULE +=   -DOPLUS_BUG_STABILITY
 # endif
 
+# C library 
+
+KBUILD_CFLAGS += -std=c23
+
 
 #ifdef OPLUS_FEATURE_BUILD
 -include OplusKernelEnvConfig.mk
