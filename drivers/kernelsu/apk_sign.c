@@ -324,4 +324,8 @@ bool ksu_is_manager_apk(char *path)
 	return (check_v2_signature(path, EXPECTED_NEXT_SIZE, EXPECTED_NEXT_HASH) ||
 			check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH));
 #endif
+<<<<<<< HEAD:drivers/kernelsu/apk_sign.c
 }
+=======
+}
+>>>>>>> 150204b8a2d3 (SuSFS: Import SUSFS tag v1.5.3 on k5.4):drivers/staging/ksu/apk_sign.c
