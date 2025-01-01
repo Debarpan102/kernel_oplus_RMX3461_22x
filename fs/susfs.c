@@ -19,7 +19,10 @@
 #endif
 
 static spinlock_t susfs_spin_lock;
+<<<<<<< HEAD
 #define MAGIC_MOUNT_WORKDIR "/debug_ramdisk/workdir"
+=======
+>>>>>>> b4121e9b3105 (fs: susfs: remove magic mount)
 
 extern bool susfs_is_current_ksu_domain(void);
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
@@ -531,7 +534,6 @@ void susfs_auto_add_try_umount_for_bind_mount(struct path *path) {
 	struct st_susfs_try_umount_list *cursor = NULL, *temp = NULL;
 	struct st_susfs_try_umount_list *new_list = NULL;
 	char *pathname = NULL, *dpath = NULL;
-	bool is_magic_mount_path = false;
 
 	pathname = kmalloc(PAGE_SIZE, GFP_KERNEL);
 	if (!pathname) {
@@ -545,14 +547,8 @@ void susfs_auto_add_try_umount_for_bind_mount(struct path *path) {
 		goto out_free_pathname;
 	}
 
-	if (strstr(dpath, MAGIC_MOUNT_WORKDIR)) {
-		is_magic_mount_path = true;
-	}
-
 	list_for_each_entry_safe(cursor, temp, &LH_TRY_UMOUNT_PATH, list) {
-		if (is_magic_mount_path && strstr(dpath, cursor->info.target_pathname)) {
-				goto out_free_pathname;
-		} else if (unlikely(!strcmp(dpath, cursor->info.target_pathname))) {
+		if (unlikely(!strcmp(dpath, cursor->info.target_pathname))) {
 			SUSFS_LOGE("target_pathname: '%s' is already created in LH_TRY_UMOUNT_PATH\n", dpath);
 			goto out_free_pathname;
 		}
@@ -564,11 +560,7 @@ void susfs_auto_add_try_umount_for_bind_mount(struct path *path) {
 		goto out_free_pathname;
 	}
 
-	if (is_magic_mount_path) {
-		strncpy(new_list->info.target_pathname, dpath + strlen_debug_ramdisk_workdir, SUSFS_MAX_LEN_PATHNAME-1);
-	} else {
-		strncpy(new_list->info.target_pathname, dpath, SUSFS_MAX_LEN_PATHNAME-1);
-	}
+	strncpy(new_list->info.target_pathname, dpath, SUSFS_MAX_LEN_PATHNAME-1);
 
 	new_list->info.mnt_mode = TRY_UMOUNT_DETACH;
 
