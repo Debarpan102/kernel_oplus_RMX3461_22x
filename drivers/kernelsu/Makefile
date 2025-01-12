@@ -18,6 +18,10 @@ obj-$(CONFIG_KSU) += kernelsu.o
 
 KSU_GIT_VERSION := 1672
 
+# hardcode!
+$(eval KSU_VERSION=11872)
+$(info -- KernelSU version: $(KSU_VERSION))
+
 # .git is a text file while the module is imported by 'git submodule add'.
 ifeq ($(shell test -e $(srctree)/$(src)/../.git; echo $$?),0)
 $(shell cd $(srctree)/$(src); /usr/bin/env PATH="$$PATH":/usr/bin:/usr/local/bin [ -f ../.git/shallow ] && git fetch --unshallow)
@@ -29,7 +33,7 @@ $(info -- KernelSU version: $(KSU_VERSION))
 ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 else # If there is no .git file, the default version will be passed.
 $(warning "KSU_GIT_VERSION not defined! It is better to make KernelSU a git submodule!")
-ccflags-y += -DKSU_VERSION=16
+ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 endif
 
 ifndef KSU_NEXT_EXPECTED_SIZE

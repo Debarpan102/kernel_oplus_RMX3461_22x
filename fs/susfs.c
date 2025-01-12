@@ -20,7 +20,6 @@
 
 static spinlock_t susfs_spin_lock;
 #define MAGIC_MOUNT_WORKDIR "/debug_ramdisk/workdir"
-static const size_t strlen_debug_ramdisk_workdir = strlen(MAGIC_MOUNT_WORKDIR);
 
 extern bool susfs_is_current_ksu_domain(void);
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
