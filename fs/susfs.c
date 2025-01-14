@@ -19,10 +19,6 @@
 #endif
 
 static spinlock_t susfs_spin_lock;
-<<<<<<< HEAD
-#define MAGIC_MOUNT_WORKDIR "/debug_ramdisk/workdir"
-=======
->>>>>>> b4121e9b3105 (fs: susfs: remove magic mount)
 
 extern bool susfs_is_current_ksu_domain(void);
 #ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
