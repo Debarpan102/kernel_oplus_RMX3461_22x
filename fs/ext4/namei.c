@@ -1249,7 +1249,7 @@ static inline int search_dirblock(struct buffer_head *bh,
  * Returns number of entries mapped.
  */
 static int dx_make_map(struct inode *dir, struct ext4_dir_entry_2 *de,
-		       unsigned blocksize, struct dx_hash_info *hinfo,
+		       struct dx_hash_info *hinfo,
 		       struct dx_map_entry *map_tail)
 {
 	int count = 0;
